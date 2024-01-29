@@ -2,6 +2,7 @@ const UserModel=require('../Model/UserModel')
 const UserTaskModel=require('../Model/TaskModel')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
+const TaskModel = require('../Model/TaskModel')
 
 const RegisterUser=async(req,res)=>{
     try{
@@ -78,14 +79,21 @@ const GetUserName=async(req,res)=>{
 }
 
 const AddTask=async(req,res)=>{
-console.log("Al")
+
     try{
 
-const task=req.body
+const task=req.body.task
+const userId=req.userId
+ 
+  
 
+ const TaskData= new TaskModel({
+    task,
+    userId
+ })
 
-
-       
+   await  TaskData.save()
+       res.status(201).json({message:"Task successfully Added",success:true})
 
     }
     catch(error){

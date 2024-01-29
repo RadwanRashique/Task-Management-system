@@ -20,8 +20,8 @@ const userAuth=(req,res,next)=>{
         }
         const decoded=  jwt.verify(token,process.env.SECRET)
     
-         console.log(decoded.UserId)
-         res.UserId=decoded.UserId
+       
+         req.userId=decoded.UserId
          next()
 
     }

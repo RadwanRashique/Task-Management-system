@@ -10,6 +10,9 @@ const UserTaskSchema=mongoose.Schema({
 
     date:{
         type:Date
+    },
+    taskorder:{
+        type:Number
     }
 })
 
