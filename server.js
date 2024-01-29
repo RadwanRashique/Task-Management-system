@@ -7,19 +7,19 @@ const mongoose=require('mongoose')
 const dotenv=require('dotenv')
 
 dotenv.config()
-
+app.use(cors())
 const DbConnection=require('./Config/dbConfig')
 
 DbConnection()
 
-app.use(cors())
+
 
 app.use(express.json())
 
 
 const UserRouter=require('./Routes/UserRoute')
 
-app.use('api/user',UserRouter)
+app.use('/api/user',UserRouter)
 
 
 const port=process.env.PORT

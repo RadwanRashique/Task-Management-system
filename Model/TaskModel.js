@@ -13,5 +13,5 @@ const UserTaskSchema=mongoose.Schema({
     }
 })
 
-const TaskModel=mongoose.model('userTaskModel',UserTaskSchema)
+const TaskModel=mongoose.model('userTaskData',UserTaskSchema)
 module.exports=TaskModel
