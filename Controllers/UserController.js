@@ -1,7 +1,7 @@
 const UserModel=require('../Model/UserModel')
-const TaskModel=require('../Model/TaskModel')
+const UserTaskModel=require('../Model/TaskModel')
 
 
 module.exports={
-    
+
 }
