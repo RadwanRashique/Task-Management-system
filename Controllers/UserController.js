@@ -59,6 +59,7 @@ const UserLogin=async(req,res)=>{
 const GetTaskData=async(req,res)=>{
     try{
 
+
     }
     catch(error){
         console.error(error,"At GetTaskData")
@@ -77,8 +78,14 @@ const GetUserName=async(req,res)=>{
 }
 
 const AddTask=async(req,res)=>{
-
+console.log("Al")
     try{
+
+const task=req.body
+
+
+
+       
 
     }
     catch(error){
