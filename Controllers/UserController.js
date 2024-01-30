@@ -60,7 +60,10 @@ const UserLogin=async(req,res)=>{
 // '65b8574a87c251e8e69c9b14'
 const GetTaskData=async(req,res)=>{
     try{
-
+console.log("ok")
+        const userId=req.userId
+        const TaskData= await TaskModel.find({userId:userId}).sort({createdAt:-1})
+        res.status(200).json({success:true,TaskData:TaskData})
 
     }
     catch(error){
