@@ -6,11 +6,11 @@ const UserAthenticate= require('../Middleware/UserAuthMiddleware')
 
 Userrouter.post('/register',UserController.RegisterUser)
 Userrouter.post('/login',UserController.UserLogin)
-Userrouter.get('/userName',UserController.GetUserName)
-Userrouter.get('/taskData',UserController.GetTaskData)
+Userrouter.get('/userName',UserAthenticate,UserController.GetUserName)
+Userrouter.get('/taskData',UserAthenticate,UserController.GetTaskData)
 Userrouter.post('/addTask',UserAthenticate,UserController.AddTask)
-Userrouter.put('/editTask',UserController.EditTask)
-Userrouter.delete('/deleteTask',UserController.DeleteTask)
+Userrouter.put('/editTask',UserAthenticate,UserController.EditTask)
+Userrouter.delete('/deleteTask',UserAthenticate,UserController.DeleteTask)
 
 
 module.exports=Userrouter

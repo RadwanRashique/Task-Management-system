@@ -47,16 +47,17 @@ const UserLogin=async(req,res)=>{
         if(!passwordVerify){
           return   res.status(400).json({message:"password Incorrect",success:false})
         }
-
+      
      const token=  jwt.sign({UserId:Emailcheck._id},process.env.SECRET,{expiresIn:'1d'})
         return  res.status(200).json({message:"Successfully Loged-In",success:true,token:token})
+       
     }
     catch(error){
         console.error(error,"At LoginUser ")
         res.status(500).json({message:"Internal server Error",success:false})
     }
 }
-
+// '65b8574a87c251e8e69c9b14'
 const GetTaskData=async(req,res)=>{
     try{
 
@@ -70,6 +71,11 @@ const GetTaskData=async(req,res)=>{
 
 const GetUserName=async(req,res)=>{
     try{
+        const userId= req.userId
+        const Data= await UserModel.findById(userId)
+       const username=Data.name
+       console.log(username)
+      return  res.status(200).json({success:true,userName:username})
 
     }
     catch(error){
