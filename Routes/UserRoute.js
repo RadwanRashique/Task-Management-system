@@ -10,7 +10,7 @@ Userrouter.get('/userName',UserAthenticate,UserController.GetUserName)
 Userrouter.get('/taskData',UserAthenticate,UserController.GetTaskData)
 Userrouter.post('/addTask',UserAthenticate,UserController.AddTask)
 Userrouter.put('/editTask',UserAthenticate,UserController.EditTask)
-Userrouter.delete('/deleteTask',UserAthenticate,UserController.DeleteTask)
+Userrouter.delete('/deleteTask/:id',UserAthenticate,UserController.DeleteTask)
 
 
 module.exports=Userrouter

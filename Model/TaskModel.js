@@ -11,10 +11,8 @@ const UserTaskSchema=mongoose.Schema({
     date:{
         type:Date
     },
-    taskorder:{
-        type:Number
-    }
-})
+    
+},{timestamps:true})
 
 const TaskModel=mongoose.model('userTaskData',UserTaskSchema)
 module.exports=TaskModel

@@ -63,6 +63,7 @@ const GetTaskData=async(req,res)=>{
 console.log("ok")
         const userId=req.userId
         const TaskData= await TaskModel.find({userId:userId}).sort({createdAt:-1})
+        console.log(TaskData)
         res.status(200).json({success:true,TaskData:TaskData})
 
     }
@@ -124,6 +125,10 @@ const EditTask=async(req,res)=>{
 
 const  DeleteTask=async(req,res)=>{
     try{
+
+        const taskId= req.params.id
+         await TaskModel.findByIdAndDelete(taskId)
+      return   res.status(200).json({message:"Successfully deleted",success:true})
 
     }
     catch(error){
