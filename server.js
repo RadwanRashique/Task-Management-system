@@ -12,9 +12,12 @@ const DbConnection=require('./Config/dbConfig')
 
 DbConnection()
 
+app.use(express.json());
 
 
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
+
 
 
 const UserRouter=require('./Routes/UserRoute')

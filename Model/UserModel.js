@@ -4,9 +4,7 @@ const UserSchema=mongoose.Schema({
         type:String
 
     },
-    age:{
-        type:Number
-    },
+   
     email:{
         type:String
     },

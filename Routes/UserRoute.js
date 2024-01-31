@@ -9,7 +9,7 @@ Userrouter.post('/login',UserController.UserLogin)
 Userrouter.get('/userName',UserAthenticate,UserController.GetUserName)
 Userrouter.get('/taskData',UserAthenticate,UserController.GetTaskData)
 Userrouter.post('/addTask',UserAthenticate,UserController.AddTask)
-Userrouter.put('/editTask',UserAthenticate,UserController.EditTask)
+Userrouter.put('/editTask/:id',UserAthenticate,UserController.EditTask)
 Userrouter.delete('/deleteTask/:id',UserAthenticate,UserController.DeleteTask)
 
 

@@ -5,21 +5,21 @@ const jwt=require('jsonwebtoken')
 const TaskModel = require('../Model/TaskModel')
 
 const RegisterUser=async(req,res)=>{
+   console.log(req.body)
     try{
 console.log("ready")
-        const {name,age,email,password,phone}=req.body
+        const {username,email,password,phone}=req.body
 
       const ExistingEmail= await UserModel.findOne({email:email})
       if(ExistingEmail){
-       return res.status(400).json({message:"You Already Have An Account",success:false})
+       return res.status(200).json({message:"You Already Have An Account",success:false})
       }
 
       const SucurePassword= await  bcrypt.hash(password,10)
       console.log(SucurePassword)
 
       const Data=  new UserModel({
-        name,
-        age,
+        name:username,
         email,
         password:SucurePassword,
         phone
@@ -34,18 +34,19 @@ console.log("ready")
 }
 
 const UserLogin=async(req,res)=>{
+    console.log(req.body)
     try{
 
         const {email,password}=req.body
       
         const Emailcheck= await UserModel.findOne({email:email})
         if(!Emailcheck){
-         return    res.status(404).json({message:"user Not found Check The Mail",success:false})
+         return    res.status(200).json({message:"user Not found Check The Mail",success:false})
         }
 
         const passwordVerify= await bcrypt.compare(password,Emailcheck.password)
         if(!passwordVerify){
-          return   res.status(400).json({message:"password Incorrect",success:false})
+          return   res.status(200).json({message:"password Incorrect",success:false})
         }
       
      const token=  jwt.sign({UserId:Emailcheck._id},process.env.SECRET,{expiresIn:'1d'})
@@ -60,10 +61,10 @@ const UserLogin=async(req,res)=>{
 // '65b8574a87c251e8e69c9b14'
 const GetTaskData=async(req,res)=>{
     try{
-console.log("ok")
+
         const userId=req.userId
         const TaskData= await TaskModel.find({userId:userId}).sort({createdAt:-1})
-        console.log(TaskData)
+        
         res.status(200).json({success:true,TaskData:TaskData})
 
     }
@@ -74,6 +75,7 @@ console.log("ok")
 }
 
 const GetUserName=async(req,res)=>{
+   
     try{
         const userId= req.userId
         const Data= await UserModel.findById(userId)
@@ -115,6 +117,12 @@ const userId=req.userId
 
 const EditTask=async(req,res)=>{
     try{
+        const taskId= req.params.id
+       
+        const taskdata=req.body.task
+       const Data= await TaskModel.findOneAndUpdate({_id:taskId},{$set:{ task:taskdata}});
+       console.log(Data)
+        res.status(200).json({ message: "Task Successfully Updated", success: true });
       
     }
     catch(error){
@@ -125,7 +133,6 @@ const EditTask=async(req,res)=>{
 
 const  DeleteTask=async(req,res)=>{
     try{
-
         const taskId= req.params.id
          await TaskModel.findByIdAndDelete(taskId)
       return   res.status(200).json({message:"Successfully deleted",success:true})
